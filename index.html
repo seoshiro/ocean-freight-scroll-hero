@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean Freight — Above Everything</title>
+  <meta name="description" content="A cinematic ocean freight concept. Logistics that works as hard as you do.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@800&family=Public+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --u: min(calc(100vh / 800), calc(100vw / 716));
+      --cream: #F7F5EF;
+      --white: #F9F9F9;
+      --body-white: rgba(249, 249, 249, 0.88);
+      --bg-dark: #0a0b0c;
+      --cloud-grey: #e2dedd;
+      --ink: #141516;
+      --ink-70: rgba(20, 21, 22, 0.70);
+      --ink-60: rgba(20, 21, 22, 0.60);
+      --ink-16: rgba(20, 21, 22, 0.16);
+      --text-shadow-headline: 0 calc(12 * var(--u)) calc(32 * var(--u)) rgba(0, 0, 0, 0.5);
+      --text-shadow-subtle: 0 calc(4 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, 0.45);
+    }
+
+    html, body {
+      width: 100%;
+      background-color: var(--bg-dark);
+      color: var(--white);
+      font-family: 'Public Sans', sans-serif;
+      overflow-x: clip;
+      scroll-behavior: auto;
+    }
+
+    body {
+      background-color: var(--cloud-grey);
+    }
+
+    /* Track & Sticky Viewport */
+    .track {
+      position: relative;
+      width: 100%;
+      background-color: var(--bg-dark);
+    }
+
+    .scene {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100lvh;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .scene video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .scene-tint {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.12) 0%,
+        rgba(0, 0, 0, 0.02) 25%,
+        rgba(0, 0, 0, 0.02) 75%,
+        rgba(0, 0, 0, 0.12) 100%
+      );
+    }
+
+    /* Content Layer */
+    .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Intro Block */
+    .intro {
+      position: absolute;
+      top: calc(940 / 8 * 1vh);
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(1280 * var(--u));
+      max-width: 100vw;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 700;
+      font-size: calc(7.4 * var(--u));
+      letter-spacing: 0.304em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-shadow: var(--text-shadow-subtle);
+      margin-bottom: calc(18 * var(--u));
+    }
+
+    .headline {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: calc(56 * var(--u));
+      line-height: calc(62 * var(--u));
+      text-transform: uppercase;
+      color: var(--cream);
+      text-shadow: var(--text-shadow-headline);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .headline span {
+      white-space: nowrap;
+      display: block;
+    }
+
+    /* Features */
+    .feature-block {
+      position: absolute;
+      width: calc(300 * var(--u));
+      text-shadow: var(--text-shadow-subtle);
+    }
+
+    .feature-icon {
+      width: calc(34 * var(--u));
+      height: calc(34 * var(--u));
+      margin-bottom: calc(30 * var(--u));
+      display: flex;
+      align-items: center;
+    }
+
+    .feature-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 calc(4 * var(--u)) calc(12 * var(--u)) rgba(0, 0, 0, 0.45));
+    }
+
+    .feature-title {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 700;
+      font-size: calc(19.6 * var(--u));
+      line-height: calc(20 * var(--u));
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: calc(12 * var(--u));
+    }
+
+    .feature-body {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 400;
+      font-size: calc(12.3 * var(--u));
+      line-height: calc(15.4 * var(--u));
+      color: var(--body-white);
+    }
+
+    /* Desktop Layout Positions */
+    /* Row 1 */
+    .feat-1 {
+      top: calc(1500 / 8 * 1vh);
+      right: calc(50% + 78 * var(--u));
+      text-align: right;
+    }
+    .feat-1 .feature-icon {
+      margin-left: auto;
+      margin-right: 0;
+      justify-content: flex-end;
+    }
+
+    .feat-2 {
+      top: calc(1500 / 8 * 1vh);
+      left: calc(50% + 78 * var(--u));
+      text-align: left;
+    }
+    .feat-2 .feature-icon {
+      margin-left: 0;
+      margin-right: auto;
+      justify-content: flex-start;
+    }
+
+    /* Row 2 */
+    .feat-3 {
+      top: calc(1759 / 8 * 1vh);
+      right: calc(50% + 88 * var(--u));
+      text-align: right;
+    }
+    .feat-3 .feature-icon {
+      margin-left: auto;
+      margin-right: 0;
+      justify-content: flex-end;
+    }
+
+    .feat-4 {
+      top: calc(1759 / 8 * 1vh);
+      left: calc(50% + 88 * var(--u));
+      text-align: left;
+    }
+    .feat-4 .feature-icon {
+      margin-left: 0;
+      margin-right: auto;
+      justify-content: flex-start;
+    }
+
+    /* Row 3 */
+    .feat-5 {
+      top: calc(2063 / 8 * 1vh);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    .feat-5 .feature-icon {
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+    }
+
+    /* Testimonial Section */
+    .trust {
+      position: relative;
+      z-index: 10;
+      margin-top: -34vh;
+      background: linear-gradient(to bottom, transparent 0vh, var(--cloud-grey) 34vh, var(--cloud-grey) 100%);
+      color: var(--ink);
+      padding-top: 34vh;
+      width: 100%;
+    }
+
+    .trust-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 64px 140px;
+    }
+
+    .trust-header {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 32px;
+      align-items: end;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--ink-16);
+    }
+
+    .trust-header h2 {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 4.4vw, 60px);
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .trust-header h2 .grey-line {
+      color: #8f8b8a;
+      display: block;
+    }
+
+    .trust-header p {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-70);
+    }
+
+    .trust-quotes {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .quote-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      padding: 44px 0;
+      border-bottom: 1px solid var(--ink-16);
+      align-items: baseline;
+    }
+
+    .quote-author {
+      font-family: 'Public Sans', sans-serif;
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .author-role {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-60);
+    }
+
+    .quote-text {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.42;
+      max-width: 680px;
+      color: var(--ink);
+    }
+
+    /* Portrait & Mobile Overrides */
+    @media (max-width: 609px), (orientation: portrait) {
+      :root {
+        --u: min(calc(100vw / 390), 1.6px);
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 112vh;
+        height: auto;
+        width: 100%;
+      }
+
+      .intro {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        padding: 0 24px;
+        margin-bottom: 24vh;
+      }
+
+      .headline {
+        font-size: clamp(34px, calc(46 * var(--u)), 72px);
+        line-height: 1.1;
+      }
+
+      .headline span {
+        white-space: normal;
+        text-align: center;
+      }
+
+      .feature-block {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 16vh;
+        text-align: center !important;
+        padding: 0 16px;
+      }
+
+      .feat-5 {
+        margin-bottom: 0;
+      }
+
+      .feature-icon {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        justify-content: center !important;
+      }
+
+      .desktop-break { display: none; }
+
+      /* Testimonials Portrait */
+      .trust-inner {
+        padding: 32px 22px 90px;
+      }
+
+      .trust-header {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding-bottom: 24px;
+      }
+
+      .quote-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 32px 0;
+      }
+    }
+    .trust-header h2 span { display: block; }
+    .scene { background: var(--bg-dark) url('assets/hero-poster.jpg') center / cover no-repeat; }
+    .track { min-height: 420vh; }
+    .feature-block { max-width: calc(50vw - 100 * var(--u)); }
+    @media (max-width: 609px), (orientation: portrait) {
+      .content { flex-shrink: 0; }
+      .intro, .feature-block { flex-shrink: 0; }
+      .feature-block { max-width: min(90vw, 420px); }
+      .feature-title { font-size: clamp(20px, calc(19.6 * var(--u)), 28px); line-height: 1.12; }
+      .feature-body { font-size: clamp(15px, calc(12.3 * var(--u)), 19px); line-height: 1.5; }
+    }
+    @media (prefers-reduced-motion: reduce) { .scene video { visibility: hidden; } }
+    @media (scripting: none) {
+      .track { height: auto; }
+      .scene { position: relative; }
+      .content { position: relative; height: auto; padding: 12vh 24px 75vh; display: grid; gap: 14vh; }
+      .intro, .feature-block { position: static; transform: none; width: 100%; max-width: 640px; margin: 0 auto; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <!-- Track holding sticky scene and scroll content -->
+  <div class="track" id="track">
+    <div class="scene">
+      <video id="hero-video" muted playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+        <!-- Source chosen dynamically via JS based on width / saveData -->
+      </video>
+      <div class="scene-tint" aria-hidden="true"></div>
+    </div>
+
+    <div class="content" id="content">
+      <!-- Intro Block -->
+      <section class="intro" id="intro">
+        <div class="eyebrow">WHY US</div>
+        <h1 class="headline">
+          <span>LOGISTICS</span>
+          <span>THAT WORKS</span>
+          <span>AS HARD AS</span>
+          <span>YOU DO.</span>
+        </h1>
+      </section>
+
+      <!-- Row 1: Left -->
+      <div class="feature-block feat-1">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Dotted ring around globe -->
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17" cy="17" r="15.5" stroke="#F9F9F9" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <circle cx="17" cy="17" r="10.5" stroke="#F9F9F9" stroke-width="1.6"/>
+            <ellipse cx="17" cy="17" rx="5" ry="10.5" stroke="#F9F9F9" stroke-width="1.4"/>
+            <line x1="6.5" y1="17" x2="27.5" y2="17" stroke="#F9F9F9" stroke-width="1.4"/>
+          </svg>
+        </div>
+        <h2 class="feature-title">ONE POINT<br class="desktop-break"> OF CONTACT</h2>
+        <p class="feature-body">No more chasing multiple vendors. One<br class="desktop-break"> team manages your entire end-to-end flow,<br class="desktop-break"> origin to destination.</p>
+      </div>
+
+      <!-- Row 1: Right -->
+      <div class="feature-block feat-2">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- 3 stepped container blocks -->
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="21" width="12" height="9" rx="1.5" stroke="#F9F9F9" stroke-width="1.8"/>
+            <line x1="6" y1="21" x2="6" y2="30" stroke="#F9F9F9" stroke-width="1"/>
+            <line x1="10" y1="21" x2="10" y2="30" stroke="#F9F9F9" stroke-width="1"/>
+            <rect x="11" y="12" width="13" height="9" rx="1.5" stroke="#F9F9F9" stroke-width="1.8"/>
+            <line x1="15.5" y1="12" x2="15.5" y2="21" stroke="#F9F9F9" stroke-width="1"/>
+            <line x1="19.5" y1="12" x2="19.5" y2="21" stroke="#F9F9F9" stroke-width="1"/>
+            <rect x="20" y="3" width="12" height="9" rx="1.5" stroke="#F9F9F9" stroke-width="1.8"/>
+            <line x1="24" y1="3" x2="24" y2="12" stroke="#F9F9F9" stroke-width="1"/>
+            <line x1="28" y1="3" x2="28" y2="12" stroke="#F9F9F9" stroke-width="1"/>
+          </svg>
+        </div>
+        <h2 class="feature-title">FULL SUPPLY CHAIN<br class="desktop-break"> VISIBILITY</h2>
+        <p class="feature-body">Track your freight in real time and get<br class="desktop-break"> proactive updates before issues become<br class="desktop-break"> delays.</p>
+      </div>
+
+      <!-- Row 2: Left -->
+      <div class="feature-block feat-3">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Dotted ring around white disc with dark check -->
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17" cy="17" r="15.5" stroke="#F9F9F9" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <circle cx="17" cy="17" r="10.5" fill="#F9F9F9"/>
+            <path d="M12.5 17.2L15.5 20.2L21.5 14.2" stroke="#0a0b0c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="feature-title">COMPLIANCE<br class="desktop-break"> YOU CAN TRUST</h2>
+        <p class="feature-body">Licensed customs brokers keep your<br class="desktop-break"> shipments moving within every regulatory<br class="desktop-break"> requirement, border to border.</p>
+      </div>
+
+      <!-- Row 2: Right -->
+      <div class="feature-block feat-4">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Bold "$" stroke -->
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="17" y1="3" x2="17" y2="31" stroke="#F9F9F9" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M23 10.5C23 7.8 20.5 6 17 6C13.2 6 11 8.2 11 11.2C11 15.6 23 14.6 23 19.8C23 23.4 20.2 26 17 26C12.8 26 10.5 23.2 10.5 20" stroke="#F9F9F9" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2 class="feature-title">COMPETITIVE,<br class="desktop-break"> TRANSPARENT PRICING</h2>
+        <p class="feature-body">No hidden fees. Clear, competitive pricing<br class="desktop-break"> backed by responsive sales support<br class="desktop-break"> throughout the shipment.</p>
+      </div>
+
+      <!-- Row 3: Centered -->
+      <div class="feature-block feat-5" id="last-block">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Double chevron -->
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 12L17 20L26 12" stroke="#F9F9F9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 18L17 26L26 18" stroke="#F9F9F9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="feature-title">FAST ISSUE<br class="desktop-break"> RESOLUTION</h2>
+        <p class="feature-body">When something unexpected happens, we<br class="desktop-break"> do not point fingers, we solve it. Our team<br class="desktop-break"> acts at once to protect your timeline.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <section class="trust">
+    <div class="trust-inner">
+      <div class="trust-header">
+        <h2>
+          <span>TRUSTED</span>
+          <span>BY BUSINESSES</span>
+          <span class="grey-line">ACROSS THE REGION</span>
+        </h2>
+        <p>An independent ocean freight concept. The names, businesses and testimonials below are fictional sample content, presented to demonstrate the design.</p>
+      </div>
+
+      <div class="trust-quotes">
+        <!-- Row 1 -->
+        <article class="quote-row">
+          <div class="quote-author">
+            <div class="author-name">Thomas Reid</div>
+            <div class="author-role">Director, Harbour Fit Group</div>
+          </div>
+          <blockquote class="quote-text">
+            “My business would not function without this team. They treat every consignment on its own merits, and our account managers know our business well enough to answer before we ask. We have never had that from a bigger carrier.”
+          </blockquote>
+        </article>
+
+        <!-- Row 2 -->
+        <article class="quote-row">
+          <div class="quote-author">
+            <div class="author-name">Ana Park</div>
+            <div class="author-role">Supply Chain Lead, Northline Projects</div>
+          </div>
+          <blockquote class="quote-text">
+            “As a first-time shipper on a major infrastructure job, we were in unfamiliar territory. They planned the whole route with us, flagged every risk early, and our first delivery reached site on the day they promised.”
+          </blockquote>
+        </article>
+
+        <!-- Row 3 -->
+        <article class="quote-row">
+          <div class="quote-author">
+            <div class="author-name">Liam Carter</div>
+            <div class="author-role">Operations Manager, Coastline Foods</div>
+          </div>
+          <blockquote class="quote-text">
+            “One contact, one dashboard, no surprises. When a vessel slipped two days, we heard about it before our customers did, and the new plan was already in place.”
+          </blockquote>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+  <script>
+(() => {
+  'use strict';
+  const track = document.getElementById('track');
+  const video = document.getElementById('hero-video');
+  const lastBlock = document.getElementById('last-block');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const rec = new URLSearchParams(location.search).get('rec') === '1';
+  // Accepted Flow candidate 4; 1080p provided by Flow upscale.
+  const MEDIA_READY = true;
+  let duration = 121 / 24;
+  let end = 1, knee = .5, cur = 0, raf = 0, mediaFailed = false;
+  let recFrame = 0, recStarted = false;
+  const clamp = n => Math.max(0, Math.min(1, n));
+  window.__RECORDER_ACTIVE = rec;
+  function layout() {
+    const bottom = lastBlock.getBoundingClientRect().bottom - track.getBoundingClientRect().top;
+    end = bottom + .75 * innerHeight;
+    track.style.height = `${end + innerHeight}px`;
+    knee = clamp(bottom / end);
+    wake();
+  }
+  function clipTime(y) {
+    const p = clamp((y - track.offsetTop) / end);
+    const q = p < knee ? p / knee * .46 : .46 + (p-knee) / (1-knee) * .54;
+    return clamp(q) * (duration - 1/48);
+  }
+  function seek(t, exact = false) {
+    if (reduced.matches || mediaFailed || video.readyState < 2 || video.seeking) return;
+    if (Math.abs(video.currentTime-t) > (exact ? .00001 : 1/60)) video.currentTime = t;
+  }
+  function tick() {
+    raf = 0;
+    if (rec || reduced.matches || mediaFailed || document.hidden) return;
+    const target = clipTime(scrollY);
+    cur += (target-cur) * .22;
+    seek(cur);
+    if (Math.abs(cur-target) > 1/240) wake();
+  }
+  function wake() { if (!raf && !rec && !reduced.matches && !mediaFailed) raf = requestAnimationFrame(tick); }
+  // Solve Bx(t)=x before evaluating By(t), rather than treating x as parameter t.
+  function ease(x) {
+    let lo = 0, hi = 1, t = x;
+    const cubic = (s,a,b) => 3*(1-s)*(1-s)*s*a + 3*(1-s)*s*s*b + s*s*s;
+    for (let i=0;i<24;i++) { t=(lo+hi)/2; if(cubic(t,.45,.55)<x)lo=t;else hi=t; }
+    return cubic(t,.05,.95);
+  }
+  function recorderTime(v,tMs) {
+    const n=clamp(tMs/6500);
+    const p=n<=.03 ? 0 : n>=.94 ? 1 : ease((n-.03)/.91);
+    const y=track.offsetTop+p*(end+.9*innerHeight);
+    scrollTo(0,y);
+    const t=clipTime(y);
+    cur=t;
+    // Exact external recorder calls may supersede an in-flight seek.
+    if (!reduced.matches && !mediaFailed && v.readyState>=1) v.currentTime=t;
+    return t;
+  }
+  window.__recTime = recorderTime;
+  function startRecording() {
+    if (!rec || recStarted || reduced.matches) return;
+    recStarted=true;
+    let start;
+    const frame=now=>{start??=now;recorderTime(video,now-start);if(now-start<6500)recFrame=requestAnimationFrame(frame);};
+    recFrame=requestAnimationFrame(frame);
+  }
+  function source() {
+    if (!MEDIA_READY || reduced.matches) return;
+    const low=innerWidth<=900 || navigator.connection?.saveData;
+    video.src=`assets/hero-ship-${low?'720':'1080'}.mp4`;
+    video.load();
+  }
+  video.addEventListener('loadedmetadata',()=>{if(Number.isFinite(video.duration))duration=video.duration;});
+  video.addEventListener('loadeddata',()=>{cur=clipTime(scrollY);seek(cur);wake();document.fonts.ready.then(startRecording);});
+  video.addEventListener('seeked',()=>{if(!rec){seek(cur);wake();}});
+  video.addEventListener('error',()=>{mediaFailed=true;video.hidden=true;});
+  addEventListener('scroll',wake,{passive:true});
+  addEventListener('resize',layout,{passive:true});
+  document.addEventListener('visibilitychange',wake);
+  reduced.addEventListener('change',()=>{
+    cancelAnimationFrame(recFrame);
+    if(reduced.matches){video.removeAttribute('src');video.load();}
+    else{source();wake();}
+  });
+  layout();
+  document.fonts.ready.then(()=>{layout();if(!MEDIA_READY)startRecording();});
+  source();
+})();
+
+
+
+
+  </script>
+</body>
+</html>
